@@ -5,6 +5,7 @@ print('Database name is: InfoSenders, table name: senders')
 print()
 print('1. Add IPs from csv file.')
 print('2. Add single IP to command line.')
+print('3. Create DB table for storing sender information.')
 choice = input('Please select a choice number: ')
 print(choice)
 if choice == '1':
@@ -18,6 +19,10 @@ if choice == '1':
 elif choice == '2':
 	IP_string = input("Enter IP that you would like to put in a DB: ")
 	FillSenders.RunOnIP(IP_string)
+elif choice == '3':
+	Table_name = 'senders'
+	# Table_name = input("Enter table name (it will be in SendersInfo database). ")
+	FillSenders.CreateDBTables(Table_name)
 
 
 

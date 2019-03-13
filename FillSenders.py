@@ -49,14 +49,15 @@ class Sender:
 db = mysql.connect(
 	host = 'localhost',
 	user= 'root',
-	password= 'smalsu',
+	password= '',
 	database= 'InfoSenders'
 )
 # print(db)
-def CreateDBTables():
-	SendersDB = cursor.execute("CREATE DATABASE InfoSenders")
+def CreateDBTables(Table_name):
+	cursor = db.cursor(buffered=True)
+	# SendersDB = cursor.execute("CREATE DATABASE InfoSenders")
 	# cursor.execute('DROP TABLE senders')
-	cursor.execute('CREATE TABLE senders (SenderIP VARCHAR(16), Network VARCHAR(22), CompanyName VARCHAR(255), CompanyType VARCHAR(255), Country VARCHAR(4), IsTeliaCustomer VARCHAR(3), IsExternal VARCHAR(3), AbuseEmails VARCHAR(255), UNIQUE (SenderIP))')
+	cursor.execute('CREATE TABLE '+Table_name+' (SenderIP VARCHAR(16), Network VARCHAR(22), CompanyName VARCHAR(255), CompanyType VARCHAR(255), Country VARCHAR(4), IsTeliaCustomer VARCHAR(3), IsExternal VARCHAR(3), AbuseEmails VARCHAR(255), UNIQUE (SenderIP))')
 
 def IfExists(cursor, IP_string):
 	query = """SELECT EXISTS(SELECT * FROM senders WHERE SenderIP='{IP}')""".format(IP=IP_string)
